@@ -11,6 +11,8 @@ class ReceipeDetail extends StatefulWidget {
 }
 
 class _ReceipeDetailState extends State<ReceipeDetail> {
+  int _sliderVal = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +20,7 @@ class _ReceipeDetailState extends State<ReceipeDetail> {
       body: SafeArea(
         // 3
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // 4
             Align(
@@ -36,9 +38,42 @@ class _ReceipeDetailState extends State<ReceipeDetail> {
               widget.recipe.label,
               style: const TextStyle(fontSize: 18),
             ),
-            // TODO: Add Expanded
 
-            // TODO: Add Slider() here
+            // 7
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(7.0),
+                itemCount: widget.recipe.ingredients.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final ingredient = widget.recipe.ingredients[index];
+                  // 9
+                  // TODO: Add ingredient.quantity
+
+                  return Text(
+                      '${ingredient.quantity * _sliderVal} ${ingredient.measure} ${ingredient.name}');
+                },
+              ),
+            ),
+
+            Slider(
+              // 10
+              min: 1,
+              max: 10,
+              divisions: 10,
+              // 11
+              label: '${_sliderVal * widget.recipe.servings} servings',
+              // 12
+              value: _sliderVal.toDouble(),
+              // 13
+              onChanged: (newValue) {
+                setState(() {
+                  _sliderVal = newValue.round();
+                });
+              },
+              // 14
+              activeColor: Colors.amber,
+              inactiveColor: Colors.blue,
+            ),
           ],
         ),
       ),

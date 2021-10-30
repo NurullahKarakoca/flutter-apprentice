@@ -1,12 +1,10 @@
+import 'ingredient.dart';
+
 class Recipe {
   String label;
   String imageUrl;
-  // TODO: Add servings and ingredients here
+  int servings;
+  List<Ingredient> ingredients;
 
-  Recipe(
-    this.label,
-    this.imageUrl,
-  );
-  // TODO; Add List<Recipe> here
+  Recipe(this.label, this.imageUrl, this.servings, this.ingredients);
 }
-
