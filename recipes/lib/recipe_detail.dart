@@ -19,29 +19,30 @@ class _ReceipeDetailState extends State<ReceipeDetail> {
       appBar: AppBar(),
       body: SafeArea(
         // 3
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // 4
-            Align(
-              alignment: Alignment.center,
-              child: Image(
-                image: AssetImage(widget.recipe.imageUrl),
+        child: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // 4
+              Align(
+                alignment: Alignment.center,
+                child: Image(
+                  image: AssetImage(widget.recipe.imageUrl),
+                ),
               ),
-            ),
-            // 5
-            const SizedBox(
-              height: 4,
-            ),
-            // 6
-            Text(
-              widget.recipe.label,
-              style: const TextStyle(fontSize: 18),
-            ),
+              // 5
+              const SizedBox(
+                height: 4,
+              ),
+              // 6
+              Text(
+                widget.recipe.label,
+                style: const TextStyle(fontSize: 18),
+              ),
 
-            // 7
-            Expanded(
-              child: ListView.builder(
+              // 7
+              ListView.builder(
+                shrinkWrap: true,
                 padding: const EdgeInsets.all(7.0),
                 itemCount: widget.recipe.ingredients.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -53,28 +54,28 @@ class _ReceipeDetailState extends State<ReceipeDetail> {
                       '${ingredient.quantity * _sliderVal} ${ingredient.measure} ${ingredient.name}');
                 },
               ),
-            ),
 
-            Slider(
-              // 10
-              min: 1,
-              max: 10,
-              divisions: 10,
-              // 11
-              label: '${_sliderVal * widget.recipe.servings} servings',
-              // 12
-              value: _sliderVal.toDouble(),
-              // 13
-              onChanged: (newValue) {
-                setState(() {
-                  _sliderVal = newValue.round();
-                });
-              },
-              // 14
-              activeColor: Colors.amber,
-              inactiveColor: Colors.blue,
-            ),
-          ],
+              Slider(
+                // 10
+                min: 1,
+                max: 10,
+                divisions: 10,
+                // 11
+                label: '${_sliderVal * widget.recipe.servings} servings',
+                // 12
+                value: _sliderVal.toDouble(),
+                // 13
+                onChanged: (newValue) {
+                  setState(() {
+                    _sliderVal = newValue.round();
+                  });
+                },
+                // 14
+                activeColor: Colors.amber,
+                inactiveColor: Colors.blue,
+              ),
+            ],
+          ),
         ),
       ),
     );
