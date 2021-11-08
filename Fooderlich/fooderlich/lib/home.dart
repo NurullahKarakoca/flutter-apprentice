@@ -15,7 +15,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // TODO: Add state variables and functions
   //7
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
   //8
   static List<Widget> pages = <Widget>[
     // TODO: Replace with Card1
@@ -28,6 +29,12 @@ class _HomeState extends State<Home> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = 0;
   }
 
   @override
